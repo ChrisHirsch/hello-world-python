@@ -9,9 +9,7 @@ from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 import logging
 
 trace.set_tracer_provider(
-    TracerProvider(
-        resource=Resource.create({SERVICE_NAME: "hello-world-service"})
-    )
+    TracerProvider(resource=Resource.create({SERVICE_NAME: "hello-world-service"}))
 )
 
 otlp_exporter = OTLPSpanExporter(endpoint="http://otel-collector:4317", insecure=True)
@@ -30,20 +28,23 @@ LoggingInstrumentor().instrument(set_logging_format=True)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@app.route('/')
+
+@app.route("/")
 def hello_world():
     logger.info("Handling request to /")
-    return 'Hello, World!'
+    return "Hello, World!"
 
-@app.route('/hello')
+
+@app.route("/hello")
 def hello():
     logger.info("there")
-    return {"there":"maybe"}
+    return {"there": "maybe"}
 
 
-@app.route('/metrics')
+@app.route("/metrics")
 def metrics():
-    return 'Metrics endpoint'
+    return "Metrics endpoint"
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
