@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-python-flask-deployment
+  namespace: hello-world-python-flask
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world-python-flask
+  template:
+    metadata:
+      labels:
+        app: hello-world-python-flask
+    spec:
+      containers:
+      - name: hello-world-python-flask
+        image: chrishirsch/hello-world-python-flask:latest
+        ports:
+        - containerPort: 8080
