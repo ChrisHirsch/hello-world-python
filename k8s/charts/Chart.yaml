@@ -1,6 +1,7 @@
 apiVersion: v2
 name: hello-world-python-flask
 description: A Helm chart for the hello-world-python-flask application
+icon: https://github.com/ChrisHirsch/hello-world-python-flask/tree/main/icon.png
 
 # A chart can be either an 'application' or a 'library' chart.
 #
