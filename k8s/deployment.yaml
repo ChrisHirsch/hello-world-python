@@ -4,7 +4,7 @@ metadata:
   name: hello-world-python-flask-deployment
   namespace: hello-world-python-flask
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: hello-world-python-flask
@@ -18,3 +18,14 @@ spec:
         image: chrishirsch/hello-world-python-flask:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: RESPONSE_MESSAGE
+          value: "Hello, from deployment!"
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+
