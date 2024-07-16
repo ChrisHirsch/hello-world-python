@@ -40,8 +40,9 @@ def hello_world():
 
 @app.route("/hello")
 def hello():
-    logger.info("there")
-    return {"there": "maybe"}
+    response = "there"
+    logger.info(response)
+    return {"response": response}
 
 
 @app.route("/metrics")
