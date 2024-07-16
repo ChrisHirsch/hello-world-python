@@ -19,6 +19,9 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - containerPort: 8080
+          env:
+          - name: RESPONSE_MESSAGE
+            value: "{{ .Values.responseMessage }}"
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
