@@ -7,6 +7,7 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 import logging
+import os
 
 trace.set_tracer_provider(
     TracerProvider(resource=Resource.create({SERVICE_NAME: "hello-world-service"}))
@@ -31,8 +32,10 @@ logger = logging.getLogger(__name__)
 
 @app.route("/")
 def hello_world():
-    logger.info("Handling request to /")
-    return "Hello, World!"
+    response_message = os.getenv("RESPONSE_MESSAGE", "Hello, World!")
+    logger.info(f"Handling request to / with message: {response_message}")
+
+    return response_message
 
 
 @app.route("/hello")

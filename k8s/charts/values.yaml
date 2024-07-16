@@ -9,6 +9,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+responseMessage: "Hello, from Helm chart!"
+
 service:
   type: ClusterIP
   port: 80
