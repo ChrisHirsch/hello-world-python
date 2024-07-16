@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world-service
-  namespace: default
+  name: hello-world-python-flask-service
+  namespace: hello-world-python-flask
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-    app: hello-world
+    app: hello-world-python-flask
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 8080
-      nodePort: 30000
