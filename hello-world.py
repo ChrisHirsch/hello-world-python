@@ -13,7 +13,8 @@ trace.set_tracer_provider(
     TracerProvider(resource=Resource.create({SERVICE_NAME: "hello-world-service"}))
 )
 
-otlp_exporter = OTLPSpanExporter(endpoint="http://otel-collector:4317", insecure=True)
+# Otel Collector on localhost
+otlp_exporter = OTLPSpanExporter(endpoint="http://localhost:4317", insecure=True)
 trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(otlp_exporter))
 
 # Initialize Flask app
@@ -41,6 +42,7 @@ def hello_world():
 @app.route("/hello")
 def hello():
     response = "there"
+    # TODO Simulate DB call with random sleep to show metrics on how long a "db call" takes
     logger.info(response)
     return {"response": response}
 
