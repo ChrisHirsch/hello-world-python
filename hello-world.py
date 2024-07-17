@@ -14,6 +14,7 @@ trace.set_tracer_provider(
 )
 
 # Otel Collector on localhost
+# host.docker.internal is so we can forward otel data to "localhost" which is really the docker host (demo specific only)
 otlp_exporter = OTLPSpanExporter(endpoint="http://host.docker.internal:4317", insecure=True)
 trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(otlp_exporter))
 
