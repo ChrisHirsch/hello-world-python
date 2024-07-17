@@ -14,7 +14,7 @@ trace.set_tracer_provider(
 )
 
 # Otel Collector on localhost
-otlp_exporter = OTLPSpanExporter(endpoint="http://localhost:4317", insecure=True)
+otlp_exporter = OTLPSpanExporter(endpoint="http://host.docker.internal:4317", insecure=True)
 trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(otlp_exporter))
 
 # Initialize Flask app
